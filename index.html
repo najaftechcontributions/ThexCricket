@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babar Legends vs Kohli Gladiators</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            color: white;
+        }
+        
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            z-index: -2;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: fadeInDown 1.5s ease-out;
+        }
+        
+        .title span:first-child {
+            color: #4CAF50; /* Green for Babar Legends */
+        }
+        
+        .title span:last-child {
+            color: #FF5722; /* Orange for Kohli Gladiators */
+        }
+        
+        .countdown {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.5rem, 8vw, 5rem);
+            margin: 1rem 0;
+            padding: 20px 40px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            animation: pulse 2s infinite alternate;
+        }
+        
+        .match-time {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin-bottom: 1rem;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        .showdown {
+            margin: 1.5rem 0;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,165,0,0.3));
+            border-radius: 10px;
+            border: 2px solid gold;
+            animation: glow 2s infinite alternate;
+        }
+        
+        .showdown-title {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: gold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .showdown-players {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .player {
+            display: flex;
+            align-items: center;
+        }
+        
+        .vs {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .cricket-ball {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23DAA520"/><path d="M50,5 A45,45 0 0,1 95,50 A45,45 0 0,1 50,95 A45,45 0 0,1 5,50 A45,45 0 0,1 50,5 Z" fill="none" stroke="%23333" stroke-width="2"/><path d="M50,5 A45,45 0 0,0 5,50 A45,45 0 0,0 50,95 A45,45 0 0,0 95,50 A45,45 0 0,0 50,5 Z" fill="none" stroke="%23333" stroke-width="2"/></svg>') no-repeat center center/contain;
+            animation: float 8s ease-in-out infinite;
+            opacity: 0.8;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            from {
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            }
+            to {
+                box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.6);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(100px, 0) rotate(180deg);
+            }
+            75% {
+                transform: translate(50px, -50px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px rgba(255,215,0,0.5);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(255,215,0,0.8);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                margin-bottom: 0.5rem;
+            }
+            
+            .countdown {
+                padding: 15px 30px;
+                margin: 0.5rem 0;
+            }
+            
+            .showdown {
+                padding: 10px 15px;
+                margin: 1rem 0;
+            }
+            
+            .showdown-players {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .cricket-ball {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="overlay"></div>
+    
+    <div class="container">
+        <h1 class="title">
+            <span>Babar Legends</span> 
+            <span style="color: white;"> vs </span>
+            <span>Kohli Gladiators</span>
+        </h1>
+        
+        <div class="match-time">The epic clash begins in:</div>
+        
+        <div class="countdown" id="countdown">00:00:00</div>
+        
+        <div class="match-time">Friday, 8:00 PM at PWD Cricket Ground</div>
+        
+        <div class="showdown">
+            <div class="showdown-title">Single Wicket Showdown</div>
+            <div class="showdown-players">
+                <div class="player" style="color: #4CAF50;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                    Hanzla
+                </div>
+                <div class="vs">VS</div>
+                <div class="player" style="color: #FF5722;">
+                    Usman
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cricket-ball" style="top: 20%; left: 10%;"></div>
+    <div class="cricket-ball" style="top: 70%; left: 80%; animation-delay: 2s;"></div>
+    <div class="cricket-ball" style="top: 30%; left: 70%; animation-delay: 4s;"></div>
+    <div class="cricket-ball" style="top: 80%; left: 20%; animation-delay: 6s;"></div>
+    
+    <script>
+        // Set the target date and time (Friday, 8:00 PM)
+        const now = new Date();
+        let targetDate;
+        
+        // If it's already Friday, set to next Friday
+        if (now.getDay() === 5 && now.getHours() < 20) {
+            targetDate = new Date();
+            targetDate.setHours(20, 0, 0, 0);
+        } else {
+            targetDate = new Date();
+            // Find next Friday
+            const daysUntilFriday = (5 - now.getDay() + 7) % 7 || 7;
+            targetDate.setDate(now.getDate() + daysUntilFriday);
+            targetDate.setHours(20, 0, 0, 0);
+        }
+        
+        // Update the countdown every second
+        const countdownElement = document.getElementById('countdown');
+        
+        function updateCountdown() {
+            const now = new Date();
+            const diff = targetDate - now;
+            
+            if (diff <= 0) {
+                countdownElement.textContent = "00:00:00";
+                countdownElement.innerHTML = "MATCH STARTED!";
+                return;
+            }
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            countdownElement.textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // Initial call
+        updateCountdown();
+        
+        // Update every second
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
